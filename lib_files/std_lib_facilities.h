@@ -14,25 +14,22 @@
 #ifndef H112
 #define H112 201004L
 
-#include<iostream>
-#include<fstream>
-#include<sstream>
-#include<cmath>
-#include<cstdlib>
-#include<string>
-#include<list>
-#include<vector>
-#include<algorithm>
-#include<stdexcept>
-#include<limits>
-#include<ctime>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <cmath>
+#include <cstdlib>
+#include <string>
+#include <list>
+#include <vector>
+#include <algorithm>
+#include <stdexcept>
+#include <limits>
+#include <ctime>
 
 //------------------------------------------------------------------------------
 
-#ifdef _MSC_VER
 #include <unordered_map>
-#else
-#include <ext/hash_map>
 using __gnu_cxx::hash_map;
 
 namespace __gnu_cxx {
@@ -46,7 +43,6 @@ namespace __gnu_cxx {
     };
 
 } // of namespace __gnu_cxx
-#endif
 
 //------------------------------------------------------------------------------
 
@@ -92,7 +88,7 @@ template<class T> struct Vector : public std::vector<T> {
 };
 
 // disgusting macro hack to get a range checked vector:
-#define vector Vector
+//#define vector Vector
 
 // trivially range-checked string (no iterator checking):
 struct String : std::string {
@@ -117,7 +113,6 @@ struct String : std::string {
 	}
 };
 
-#ifndef _MSC_VER
 namespace __gnu_cxx {
 
     template<> struct hash<String>
@@ -129,7 +124,6 @@ namespace __gnu_cxx {
     };
 
 } // of namespace __gnu_cxx
-#endif
 
 
 struct Exit : runtime_error {
@@ -154,12 +148,10 @@ inline void error(const string& s, int i)
 	error(os.str());
 }
 
-#if _MSC_VER<1500
 	// disgusting macro hack to get a range checked string:
-	#define string String
+	//#define string String
 	// MS C++ 9.0 have a built-in assert for string range check
 	// and uses "std::string" in several places so that macro substitution fails
-#endif
 
 template<class T> char* as_bytes(T& i)	// needed for binary I/O
 {
