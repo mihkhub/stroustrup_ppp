@@ -30,21 +30,6 @@
 //------------------------------------------------------------------------------
 
 #include <unordered_map>
-using __gnu_cxx::hash_map;
-
-namespace __gnu_cxx {
-
-    template<> struct hash<std::string>
-    {
-        size_t operator()(const std::string& s) const
-        {
-            return hash<char*>()(s.c_str());
-        }
-    };
-
-} // of namespace __gnu_cxx
-
-//------------------------------------------------------------------------------
 
 typedef long Unicode;
 
@@ -113,7 +98,7 @@ struct String : std::string {
 	}
 };
 
-namespace __gnu_cxx {
+/* namespace __gnu_cxx {
 
     template<> struct hash<String>
     {
@@ -124,6 +109,7 @@ namespace __gnu_cxx {
     };
 
 } // of namespace __gnu_cxx
+*/
 
 
 struct Exit : runtime_error {
